@@ -1,0 +1,11 @@
+language: java
+sudo: false
+cache:
+  directories:
+  - $HOME/.gradle
+jdk:
+  - oraclejdk8
+  - openjdk7
+
+install: ./gradlew clean build
+script: ./gradlew clean test
