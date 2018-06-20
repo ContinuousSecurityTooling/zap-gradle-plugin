@@ -1,5 +1,9 @@
 language: java
 sudo: false
+
+env:
+  - ossrhNexusUser=nothing
+  - ossrhNexusPassword=nothing
 cache:
   directories:
   - $HOME/.gradle
