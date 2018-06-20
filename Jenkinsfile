@@ -39,9 +39,9 @@ timeout(60) {
 
             stage('Deploy') {
                 if (git.isProductionBranch()) {
-                    // TODO
+                    sh "./gradlew uploadSnapshot"
                 } else {
-                    // TODO
+                    sh "./gradlew uploadArchives"
                 }
 
                 stage('Sonar') {

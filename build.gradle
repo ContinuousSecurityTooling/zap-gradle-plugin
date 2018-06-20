@@ -69,3 +69,25 @@ pluginBundle {
 publishPlugins.onlyIf {
     project.version.isTag == true
 }
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhNexusUser, password: ossrhNexusPassword)
+            }
+        }
+    }
+}
+
+task uploadSnapshot(type: Upload) {
+    configuration = configurations.archives
+    uploadDescriptor = true
+    repositories {
+        mavenDeployer {
+            repository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhNexusUser, password: ossrhNexusPassword)
+            }
+        }
+    }
+}
