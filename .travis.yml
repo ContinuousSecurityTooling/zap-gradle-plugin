@@ -1,20 +1,40 @@
 language: java
 sudo: false
 
+before_cache:
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 cache:
   directories:
-  - $HOME/.gradle
+    - $HOME/.gradle/caches
+    - $HOME/.gradle/wrapper
+
 jdk:
   - oraclejdk8
+  - oraclejdk9
   - openjdk7
+  - openjdk8
+  - openjdk9
+
+# Fix the EC parameters error: (ref https://github.com/travis-ci/travis-ci/issues/8503)
+before_install:
+  - chmod +x gradlew
+  - sudo apt-get -qq update
+  - sudo apt-get install -y zip curl locate libbcprov-java
+  - |
+    sudo ln -s /usr/share/java/bcprov.jar /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/bcprov.jar \
+    && sudo awk -F . -v OFS=. 'BEGIN{n=2}/^security\.provider/ {split($3, posAndEquals, "=");$3=n++"="posAndEquals[2];print;next} 1' /etc/java-7-openjdk/security/java.security > /tmp/java.security \
+    && sudo echo "security.provider.1=org.bouncycastle.jce.provider.BouncyCastleProvider" >> /tmp/java.security \
+    && sudo mv /tmp/java.security /etc/java-7-openjdk/security/java.security
 
 install:
-  # Fix the EC parameters error: (ref https://github.com/travis-ci/travis-ci/issues/8503)
-  - wget "https://bouncycastle.org/download/bcprov-ext-jdk15on-158.jar" -O "${JAVA_HOME}"/jre/lib/ext/bcprov-ext-jdk15on-158.jar && perl -pi.bak -e 's/^(security\.provider\.)([0-9]+)/$1.($2+1)/ge' /etc/java-7-openjdk/security/java.security && echo "security.provider.1=org.bouncycastle.jce.provider.BouncyCastleProvider" | tee -a /etc/java-7-openjdk/security/java.security
   - mkdir -p ~/.gradle/
   - printf '[defaults]\nroles_path=../' >ansible.cfg
   - echo "ossrhNexusUser=null" >> ~/.gradle/gradle.properties
   - echo "ossrhNexusPassword=null" >> ~/.gradle/gradle.properties
+
+env:
+  global:
+    - JAVA_OPTS="-XX:PermSize=512M -XX:MaxPermSize=1G"
 
 script:
   - ./gradlew clean build
