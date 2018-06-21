@@ -1,9 +1,6 @@
 language: java
 sudo: false
 
-env:
-  - ossrhNexusUser=nothing
-  - ossrhNexusPassword=nothing
 cache:
   directories:
   - $HOME/.gradle
@@ -11,5 +8,12 @@ jdk:
   - oraclejdk8
   - openjdk7
 
-install: ./gradlew clean build
-script: ./gradlew clean test
+install:
+  - mkdir -p ~/.gradle/
+  - printf '[defaults]\nroles_path=../' >ansible.cfg
+  - echo "ossrhNexusUser=null" >> ~/.gradle/gradle.properties
+  - echo "ossrhNexusPassword=null" >> ~/.gradle/gradle.properties
+
+script:
+  - ./gradlew clean build
+  - ./gradlew test
