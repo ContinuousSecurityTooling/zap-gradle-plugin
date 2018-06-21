@@ -9,6 +9,8 @@ jdk:
   - openjdk7
 
 install:
+  # Fix the EC parameters error: (ref https://github.com/travis-ci/travis-ci/issues/8503)
+  - wget "https://bouncycastle.org/download/bcprov-ext-jdk15on-158.jar" -O "${JAVA_HOME}"/jre/lib/ext/bcprov-ext-jdk15on-158.jar && perl -pi.bak -e 's/^(security\.provider\.)([0-9]+)/$1.($2+1)/ge' /etc/java-7-openjdk/security/java.security && echo "security.provider.1=org.bouncycastle.jce.provider.BouncyCastleProvider" | tee -a /etc/java-7-openjdk/security/java.security
   - mkdir -p ~/.gradle/
   - printf '[defaults]\nroles_path=../' >ansible.cfg
   - echo "ossrhNexusUser=null" >> ~/.gradle/gradle.properties
