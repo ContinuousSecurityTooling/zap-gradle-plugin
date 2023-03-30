@@ -14,7 +14,6 @@ plugins {
 apply plugin: 'groovy'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
-apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 repositories {
@@ -23,38 +22,32 @@ repositories {
 
 group 'net.continuous-security-tools'
 version = '0.0.1-SNAPSHOT'
-jar.archiveName = "zap-gradle-plugin.jar"
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
 
 dependencies {
-    compile gradleApi()
-    compile localGroovy()
-    compile 'com.google.guava:guava:18.0'
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation 'com.google.guava:guava:18.0'
 
-    testCompile 'org.hamcrest:hamcrest-all:1.3'
-    testCompile 'com.netflix.nebula:nebula-test:9.0.0'
-}
-
-idea {
-    module {
-        downloadJavadoc = true
-        downloadSources = true
-    }
-}
-
-task sourceJar(type: Jar) {
-    from sourceSets.main.allSource
-    classifier 'sources'
+    testImplementation 'org.hamcrest:hamcrest-all:1.3'
+    testImplementation 'com.netflix.nebula:nebula-test:9.0.0'
 }
 
 publishing {
     publications {
-        PluginPublication(MavenPublication) {
+        maven(MavenPublication) {
             artifactId 'zap-gradle-plugin'
-            from components.java
 
-            artifact(sourceJar) {
-                classifier 'sources'
-            }
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+          url = version.endsWith('SNAPSHOT') ?  "https://oss.sonatype.org/content/repositories/snapshots/" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
         }
     }
 }
@@ -68,26 +61,4 @@ pluginBundle {
 
 publishPlugins.onlyIf {
     project.version.isTag == true
-}
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: ossrhNexusUser, password: ossrhNexusPassword)
-            }
-        }
-    }
-}
-
-task uploadSnapshot(type: Upload) {
-    configuration = configurations.archives
-    uploadDescriptor = true
-    repositories {
-        mavenDeployer {
-            repository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: ossrhNexusUser, password: ossrhNexusPassword)
-            }
-        }
-    }
 }
