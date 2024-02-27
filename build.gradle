@@ -4,16 +4,18 @@ buildscript {
     }
 
     dependencies {
+        classpath("com.gradle.publish:plugin-publish-plugin:1.1.0")
     }
 }
 
 plugins {
-    id 'com.gradle.plugin-publish' version '0.20.0'
+    id 'com.gradle.plugin-publish' version '1.1.0'
 }
 
 apply plugin: 'groovy'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
+apply plugin: 'com.gradle.plugin-publish'
 apply plugin: 'maven-publish'
 
 repositories {
@@ -53,12 +55,12 @@ publishing {
 }
 
 
-pluginBundle {
-      website = 'https://github.com/ContinuousSecurityTooling/zap-gradle-plugin'
-      vcsUrl = 'https://github.com/ContinuousSecurityTooling/zap-gradle-plugin'
-      tags = ['java', 'code quality', 'zap', 'dev ops', 'security']
-}
-
-publishPlugins.onlyIf {
-    project.version.isTag == true
+gradlePlugin {
+    website.set('https://github.com/ContinuousSecurityTooling/zap-gradle-plugin')
+    vcsUrl.set('https://github.com/ContinuousSecurityTooling/zap-gradle-plugin')
+    plugins {
+      create("zapPlugin") {
+        tags.set(listOf("java", "code quality", "zap", "dev ops", "security"))
+      }
+    }
 }
