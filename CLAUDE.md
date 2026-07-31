@@ -135,11 +135,20 @@ Two test specs under `src/test/groovy`, both Spock:
   validation. Deliberately doesn't exercise `zapAnalyze`/`zapSeleniumAnalyze` against a real ZAP
   instance — no ZAP binary in CI — only the failure paths that don't need one.
 
-**Gotcha:** `com.netflix.nebula:nebula-test:10.6.2` brings in Spock 2.3 (JUnit Platform-based),
-but Gradle's `test` task defaults to JUnit4 detection. Without `test { useJUnitPlatform() }` in
-build.gradle, `./gradlew test` reports `BUILD SUCCESSFUL` while silently running **zero** tests —
-check `build/test-results/test/*.xml` for actual test counts if a change to this area seems
-suspiciously green.
+**Gotcha:** Gradle's `test` task defaults to JUnit4 detection, but Spock 2.x is JUnit
+Platform-based. Without `test { useJUnitPlatform() }` in build.gradle, `./gradlew test` reports
+`BUILD SUCCESSFUL` while silently running **zero** tests — check `build/test-results/test/*.xml`
+for actual test counts if a change to this area seems suspiciously green.
+
+**Gotcha (Renovate):** `nebula-test:10.6.2` used to bring in `spock-core`/`spock-junit4`
+transitively. Starting with `nebula-test:12.x`, its Gradle module metadata dropped Spock entirely
+(only `assertj-core`, `jspecify`, `junit-platform-launcher` remain) even though
+`IntegrationTestKitSpec` still extends `spock.lang.Specification` — a Renovate bump to 12.x alone
+breaks `compileTestGroovy` with an unresolved `spock.lang.Specification` symbol. Fixed by declaring
+`org.spockframework:spock-core` and `spock-junit4` explicitly as `testImplementation`, pinned to
+`2.3-groovy-3.0` (must match the Groovy line Gradle bundles — check `./gradlew --version`; Gradle
+8.14.5 bundles Groovy 3.0.25). If a future Gradle bump moves to Groovy 4.x, this pin needs to move
+to a `-groovy-4.0` Spock build too.
 
 `gradleTestKit()` is declared explicitly as `testImplementation` (not left to
 `java-gradle-plugin`'s auto-wiring) since it's needed for both `ProjectBuilder` (unit tests) and
