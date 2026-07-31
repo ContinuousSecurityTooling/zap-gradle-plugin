@@ -60,7 +60,9 @@ gradlePlugin {
     vcsUrl.set('https://github.com/ContinuousSecurityTooling/zap-gradle-plugin')
     plugins {
       create("zapPlugin") {
-        tags.set(listOf("java", "code quality", "zap", "dev ops", "security"))
+        id = 'net.continuous-security-tools.zap-gradle'
+        implementationClass = 'net.continuoussecuritytools.zap.ZapPlugin'
+        tags.set(['java', 'code quality', 'zap', 'dev ops', 'security'])
       }
     }
 }
