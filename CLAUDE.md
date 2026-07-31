@@ -90,6 +90,12 @@ Publishes to **two independent destinations**, both configured in [build.gradle]
      `gradle.publish.secret` in `~/.gradle/gradle.properties`. A local `.env` (gitignored) holds
      these for convenience — it is not consumed automatically by Gradle, it's just where the
      values live locally.
+   - **Gotcha (Renovate):** `com.gradle.plugin-publish` 2.x makes `displayName` a required
+     property on each `plugins { create(...) { ... } }` declaration (optional under 1.x, which
+     this repo started on). Missing it fails `publishPlugins` at execution time with `Plugin
+     'zapPlugin' has no 'displayName' property set` — `validatePlugins`/`./gradlew build` won't
+     catch it locally, only an actual `publishPlugins` run does. The `zapPlugin` declaration in
+     `gradlePlugin {}` sets both `displayName` and `description` for this reason.
 
 `jcenter()` is gone from this repo (shut down in 2021) — repositories use `mavenCentral()`.
 

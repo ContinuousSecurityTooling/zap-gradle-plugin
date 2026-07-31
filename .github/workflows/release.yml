@@ -85,8 +85,8 @@ jobs:
           git add CHANGELOG.md
           git diff --staged --quiet || git commit -m "chore(release): update changelog for v${{ inputs.releaseversion }}"
           git tag v${{ github.event.inputs.releaseversion }} || true
-          git push
           git push --tags || true
+          git push || true
 
       - name: Create Release on GH
         id: tag-and-release
