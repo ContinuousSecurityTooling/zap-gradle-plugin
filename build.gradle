@@ -1,34 +1,20 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-
-    dependencies {
-        classpath("com.gradle.publish:plugin-publish-plugin:1.1.0")
-    }
-}
+import com.vanniktech.maven.publish.GradlePublishPlugin
 
 plugins {
     id 'com.gradle.plugin-publish' version '2.1.1'
+    id 'com.vanniktech.maven.publish' version '0.37.0'
 }
 
 apply plugin: 'groovy'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
-apply plugin: 'com.gradle.plugin-publish'
-apply plugin: 'maven-publish'
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 group 'net.continuous-security-tools'
-version = '0.0.1-SNAPSHOT'
-
-java {
-    withJavadocJar()
-    withSourcesJar()
-}
+version = findProperty('releaseVersion') ?: '0.0.1-SNAPSHOT'
 
 dependencies {
     implementation gradleApi()
@@ -39,17 +25,38 @@ dependencies {
     testImplementation 'com.netflix.nebula:nebula-test:12.6.0'
 }
 
-publishing {
-    publications {
-        maven(MavenPublication) {
-            artifactId 'zap-gradle-plugin'
+mavenPublishing {
+    configure(new GradlePublishPlugin())
 
-            from components.java
+    coordinates(group.toString(), 'zap-gradle-plugin', version.toString())
+
+    publishToMavenCentral()
+    signAllPublications()
+
+    pom {
+        name = 'ZAP Gradle Plugin'
+        description = 'A Gradle plugin for running OWASP ZAP security scans.'
+        url = 'https://github.com/ContinuousSecurityTooling/zap-gradle-plugin'
+
+        licenses {
+            license {
+                name = 'The Apache License, Version 2.0'
+                url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+            }
         }
-    }
-    repositories {
-        maven {
-          url = version.endsWith('SNAPSHOT') ?  "https://oss.sonatype.org/content/repositories/snapshots/" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+
+        developers {
+            developer {
+                id = 'mreinhardt'
+                name = 'Martin Reinhardt'
+                email = 'martin@m13t.de'
+            }
+        }
+
+        scm {
+            url = 'https://github.com/ContinuousSecurityTooling/zap-gradle-plugin'
+            connection = 'scm:git:git://github.com/ContinuousSecurityTooling/zap-gradle-plugin.git'
+            developerConnection = 'scm:git:ssh://git@github.com/ContinuousSecurityTooling/zap-gradle-plugin.git'
         }
     }
 }
