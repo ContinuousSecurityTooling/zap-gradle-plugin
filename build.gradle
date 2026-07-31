@@ -16,7 +16,7 @@ repositories {
 group 'net.continuous-security-tools'
 version = findProperty('releaseVersion') ?: '0.0.1-SNAPSHOT'
 
-ext.zapJavaVersion = '0.4.1'
+ext.zapJavaVersion = '0.4.4'
 
 dependencies {
     implementation gradleApi()
