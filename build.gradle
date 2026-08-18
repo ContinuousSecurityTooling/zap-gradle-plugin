@@ -21,7 +21,7 @@ ext.zapJavaVersion = '1.0.11'
 dependencies {
     implementation gradleApi()
     implementation localGroovy()
-    implementation 'com.google.guava:guava:33.7.0-jre'
+    implementation 'com.google.guava:guava:33.7.1-jre'
 
     implementation "net.continuous-security-tools:zap-utils:${zapJavaVersion}"
     implementation "net.continuous-security-tools:zap-client-api:${zapJavaVersion}"
