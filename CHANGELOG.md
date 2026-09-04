@@ -1,4 +1,33 @@
 
+## [0.1.2](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/compare/v0.1.1...v0.1.2) (2026-09-04)
+
+### Bug Fixes
+
+* **deps:** Update zapjavaversion to v1 ([52205e2](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/commit/52205e2f12cf26145b6638eef8494b298707ff7f))
+
+* **deps:** Update dependency com.netflix.nebula:nebula-test to v12.7.0 ([8fc7a62](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/commit/8fc7a623363c35527598a235e1683f743be65f5a))
+
+* **deps:** Update dependency com.netflix.nebula:nebula-test to v12.8.0 ([06925d4](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/commit/06925d43bcdfada2aee8f7ddc6d18eca513989d6))
+
+* **deps:** Update dependency com.google.guava:guava to v33.7.0-jre ([8a81c4f](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/commit/8a81c4f088a5ac6b0ae6c6cf1cc6bdb02ff8cc45))
+
+* **deps:** Update dependency com.google.guava:guava to v33.7.1-jre ([6caa189](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/commit/6caa189bbcaa78d0027920f71b1419c55461758a))
+
+* **deps:** Update dependency com.netflix.nebula:nebula-test to v12.9.0 ([0516a0f](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/commit/0516a0fe97402288d3ba51345bbd270b142c52a2))
+
+* **deps:** Update dependency com.netflix.nebula:nebula-test to v12.10.1 ([41dffac](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/commit/41dffac12c8ef52e881637dcf8713fefacef9edf))
+
+* **deps:** Update zapjavaversion to v1.0.12 ([57cc2a1](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/commit/57cc2a1534b74268679193267db3a12acbbd6fca))
+
+
+
+### Dependency Updates
+
+* **deps:** Update actions/setup-java action to v6 ([f17a745](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/commit/f17a745d2e106956711dee18ef2c71b14c7188d6))
+
+
+
+
 ## [0.1.1](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/compare/...v0.1.1) (2026-07-31)
 
 ### Bug Fixes
