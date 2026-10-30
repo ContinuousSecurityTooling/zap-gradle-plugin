@@ -1,4 +1,43 @@
 
+## [0.1.3](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/compare/v0.1.2...v0.1.3) (2026-10-30)
+
+### Bug Fixes
+
+* **deps:** Update dependency com.netflix.nebula:nebula-test to v12.11.0 ([2a98211](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/commit/2a98211ddaabd5d580724ae9c7c90e88ac8537c8))
+
+* **deps:** Update dependency com.netflix.nebula:nebula-test to v12.12.0 ([7f2b849](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/commit/7f2b8499389bb595734d6639fb7518ceeb9a0323))
+
+* **deps:** Update dependency com.netflix.nebula:nebula-test to v12.13.0 ([96e0331](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/commit/96e0331fa94751db99dc74c725e9ca3cb68465ef))
+
+* **deps:** Update dependency com.netflix.nebula:nebula-test to v12.13.1 ([8110421](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/commit/811042135594564ec5e2c3e848ecc02a1dae397c))
+
+* **deps:** Update zapjavaversion to v1.0.13 ([9c5e7c7](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/commit/9c5e7c75244fab765de5602a11b8cb05d0ef75b5))
+
+* **deps:** Update dependency com.google.guava:guava to v33.7.2-jre ([f17a48e](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/commit/f17a48eb9c22f7efad9903257dcad9797dd27090))
+
+* **deps:** Update zapjavaversion to v1.0.15 ([1430c99](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/commit/1430c990a826d7db58624ae589138caa2d2910ee))
+
+* **deps:** Update zapjavaversion to v1.0.16 ([e6cf72b](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/commit/e6cf72b77fa7dc61468bda8e36f4c37be730fbc1))
+
+* **deps:** Update zapjavaversion to v1.0.17 ([71a810f](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/commit/71a810f4bb47005332b41c57fe869f76c8bd50ea))
+
+
+
+### Dependency Updates
+
+* **deps:** Update plugin com.gradle.plugin-publish to v2.2.1 ([e2225c8](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/commit/e2225c8cebe20401290483b4ca3e89a9b4e014a5))
+
+* **deps:** Update dependency java-jdk to v17.0.20+101 ([6d7e97c](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/commit/6d7e97c632844adf004a15bdea9d67f99e92bac6))
+
+* **deps:** Update dependency java-jdk to v25 ([b8b3ca2](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/commit/b8b3ca226c8ef36c72fd0c134c27035c692185f9))
+
+* **deps:** Update gradle to v8.14.6 ([5980bdb](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/commit/5980bdb76e97a41045ea4408d4b6c0683d67e3b0))
+
+* **deps:** Update dependency java-jdk to v25.0.5+8.0.lts ([80dfccd](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/commit/80dfccda7dba4bbe499cfe7b9b4bf89829e4b892))
+
+
+
+
 ## [0.1.2](https://github.com/ContinuousSecurityTooling/zap-gradle-plugin/compare/v0.1.1...v0.1.2) (2026-09-04)
 
 ### Bug Fixes
