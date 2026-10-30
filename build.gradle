@@ -84,7 +84,7 @@ gradlePlugin {
         implementationClass = 'net.continuoussecuritytools.zap.ZapPlugin'
         displayName = 'ZAP Gradle Plugin'
         description = 'A Gradle plugin for running OWASP ZAP security scans.'
-        tags.set(['java', 'code quality', 'zap', 'dev ops', 'security'])
+        tags.set(['java', 'code-quality', 'zap', 'devops', 'security'])
       }
     }
 }
